@@ -1,15 +1,27 @@
-const mysql = require('mysql');
-const connection = mysql.createConnection({
-    host:'bzpsidwqqrr1ihqhketf-mysql.services.clever-cloud.com',
-    user:'uwo5zhnexmavvyts',
-    password:'59YmvsoF1T0wrpudO3iT',
-    database:'bzpsidwqqrr1ihqhketf',
-    port:'3306',
-})
+const mongoose = require('mongoose')
+mongoose.set('strictQuery',false)
 
-connection.connect((err)=>{
-    if(err) throw err;
-    console.log('database connected');
-})
+mongoose.connect('mongodb+srv://moiz78987:Moizarif1234@cluster0.n4jmtig.mongodb.net/',{
+    useNewUrlParser:true,
+    useUnifiedTopology:true,
+});
+var db = mongoose.connection;
+db.on('error', ()=>console.log('error'))
+db.once('open', ()=>console.log('MongoDB Connected'))
 
-module.exports={connection};
+module.exports={db};
+
+
+
+
+
+// mongoose.connect('mongodb+srv://moiz78987:Moizarif1234@cluster0.n4jmtig.mongodb.net/', {
+//     useNewUrlParser: true,
+//     useUnifiedTopology: true,
+// })
+// .then(() => {
+//     console.log('MongoDB Connected');
+// })
+// .catch((error) => {
+//     console.error('MongoDB Connection Error:', error);
+// });
